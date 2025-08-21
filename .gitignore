@@ -5,6 +5,11 @@ build/
 dist/
 wheels/
 *.egg-info
-
+*.idea
+*.xml
+.vscode
 # Virtual environments
 .venv
+# Default ignored files
+/shelf/
+/workspace.xml
