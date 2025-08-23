@@ -4,7 +4,7 @@ import os
 # Create an MCP server
 mcp = FastMCP("AI Sticky Notes")
 # NOTES_FILE = 'notes.txt'
-NOTES_FILE = '/Users/imamhossainroni/Documents/ai-ml/mcp-hub/notes.txt'
+NOTES_FILE = '/notes.txt'
 
 
 def ensure_file():
