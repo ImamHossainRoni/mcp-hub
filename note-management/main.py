@@ -4,7 +4,7 @@ import os
 # Create an MCP server
 mcp = FastMCP("AI Sticky Notes")
 # NOTES_FILE = 'notes.txt'
-NOTES_FILE = '/notes.txt'
+NOTES_FILE = '/Users/imamhossainroni/Documents/ai-ml/mcp-hub/note-management/notes.txt'
 
 
 def ensure_file():
@@ -30,7 +30,7 @@ def add_note(message: str) -> str:
     return "Notes Saved!"
 
 
-@mcp.tool()
+@mcp.resource("notes://latest")
 def read_latest_notes():
     """
     Get the most recently added note from the sticky note file.
@@ -87,3 +87,21 @@ def delete_note(total_num: int) -> bool:
 
     print(f"Successfully deleted {total_num} note(s)")
     return True
+
+
+@mcp.prompt()
+def note_summary_prompt() -> str:
+    """
+    Generate a prompt asking the AI to summarize all current notes.
+
+    Returns:
+        str: A prompt string that includes all notes and asks for a summary.
+             If no notes exist, a message will be shown indicating that.
+    """
+    ensure_file()
+    with open(NOTES_FILE, "r") as f:
+        content = f.read().strip()
+    if not content:
+        return "There are no notes yet."
+
+    return f"Summarize the current notes: {content}"
